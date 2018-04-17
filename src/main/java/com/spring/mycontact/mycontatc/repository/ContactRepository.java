@@ -10,6 +10,4 @@ public interface ContactRepository extends CrudRepository<Contact, Integer> {
     List<Contact> findContactByNameContaining(String prefix);
 
     Contact findContactById(int id);
-
-    void deleteContactById(int id);
 }

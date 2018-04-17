@@ -27,8 +27,8 @@
                 <span class="glyphicon glyphicon-plus"></span> Add new contact
             </a>
             <div class="float-right">
-                <form class="input-group float-right" action="#" method="GET">
-                    <input type="text" class="form-control" placeholder="Type contact name..."
+                <form class="input-group float-right" th:action="@{/contact/search}" method="GET">
+                    <input type="text" name="key" class="form-control" placeholder="Type contact name..."
                            aria-label="Search contact"
                            aria-describedby="basic-addon2">
                     <div class="input-group-append">
@@ -48,7 +48,7 @@
             <table class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                    <th>No</th>
+                    <th>Id</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
@@ -58,13 +58,15 @@
                 </thead>
                 <tbody>
                 <tr th:each="contact,iterStat : ${contacts}">
-                    <td th:text="${iterStat.count}"></td>
+                    <td th:text="${contact.id}"></td>
                     <td th:text="${contact.name}"></td>
                     <td th:text="${contact.email}"></td>
                     <td th:text="${contact.phone}"></td>
                     <td class="align-content-center"><a class="btn btn-info"
                                                         th:href="@{/contact/{id}/edit(id=${contact.id})}">Edit</a></td>
-                    <td class="align-content-center"><a href="#" class="btn btn-danger">Delete</a></td>
+                    <td class="align-content-center"><a class="btn btn-danger"
+                                                        th:href="@{/contact/{id}/delete(id=${contact.id})}">Delete</a>
+                    </td>
                 </tr>
                 </tbody>
             </table>

@@ -35,7 +35,7 @@ public class ContactServiceImplement implements ContactService {
 
     @Override
     public void delete(int id) {
-        repository.deleteContactById(id);
+        repository.deleteById(id);
     }
 
 }

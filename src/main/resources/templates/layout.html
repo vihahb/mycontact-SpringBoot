@@ -39,7 +39,7 @@
 
 
 <nav id="navbar-main" th:fragment="header" class="navbar navbar-expand-lg navbar-light bg-light container">
-    <a class="navbar-brand" href="/list">Spring Contact</a>
+    <a class="navbar-brand" th:href="@{/contact}">Spring Contact</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -48,10 +48,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="/list">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" th:href="@{/contact}">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/form">Create contact</a>
+                <a class="nav-link" th:href="@{/contact/create}">Create contact</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">

@@ -3,15 +3,11 @@ package com.spring.mycontact.mycontatc.controller;
 import com.spring.mycontact.mycontatc.domain.Contact;
 import com.spring.mycontact.mycontatc.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.bind.BindResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -57,8 +53,24 @@ public class WebController {
             }
         }
         contactService.save(contact);
-        attributes.addFlashAttribute("Success", "Saved contact successfully!");
+        attributes.addFlashAttribute("success", "Saved contact successfully!");
         return "redirect:/contact";
+    }
+
+    @GetMapping("/contact/{id}/delete")
+    public String delete(@PathVariable int id, RedirectAttributes redirect) {
+        contactService.delete(id);
+        redirect.addFlashAttribute("success", "Delete contact successfully!");
+        return "redirect:/contact";
+    }
+
+    @GetMapping("contact/search")
+    public String search(@RequestParam("key") String key, Model model) {
+        if (key.equals(""))
+            return "redirect:/contact";
+
+        model.addAttribute("contacts", contactService.search(key));
+        return "list";
     }
 
     @RequestMapping("/form")
