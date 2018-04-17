@@ -65,7 +65,8 @@
                     <td class="align-content-center"><a class="btn btn-info"
                                                         th:href="@{/contact/{id}/edit(id=${contact.id})}">Edit</a></td>
                     <td class="align-content-center"><a class="btn btn-danger"
-                                                        th:href="@{/contact/{id}/delete(id=${contact.id})}">Delete</a>
+                                                        th:href="@{/contact/{id}/delete(id=${contact.id})}"
+                                                        methods="POST">Delete</a>
                     </td>
                 </tr>
                 </tbody>

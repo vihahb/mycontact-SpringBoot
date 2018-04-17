@@ -57,7 +57,7 @@ public class WebController {
         return "redirect:/contact";
     }
 
-    @GetMapping("/contact/{id}/delete")
+    @PostMapping("/contact/{id}/delete")
     public String delete(@PathVariable int id, RedirectAttributes redirect) {
         contactService.delete(id);
         redirect.addFlashAttribute("success", "Delete contact successfully!");
