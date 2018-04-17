@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <meta charset="UTF-8">
+    <title>List contact</title>
+</head>
+<body>
+<nav id="navbar-main" th:replace="layout :: header"></nav>
+
+<div class="container list">
+
+    <div th:if="${success}" class="row alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <span th:text="${success}"></span>
+    </div>
+
+
+    <th:block th:if="${#lists.isEmpty(contacts)}">
+        <h3 class="text-primary">No contact</h3>
+    </th:block>
+
+    <th:block th:unless="${#lists.isEmpty(contacts)}">
+        <div id="row-1" class="row clearfix col">
+            <a th:href="@{/contact/create}"
+               href="#" class="btn btn-success float-left">
+                <span class="glyphicon glyphicon-plus"></span> Add new contact
+            </a>
+            <div class="float-right">
+                <form class="input-group float-right" action="#" method="GET">
+                    <input type="text" class="form-control" placeholder="Type contact name..."
+                           aria-label="Search contact"
+                           aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="submit">Find</button>
+                    </div>
+                </form>
+
+                <!--<form class="form-inline float-right" action="#" method="GET">-->
+                <!--<div class="form-group">-->
+                <!--<input type="text" class="form-control" name="q" placeholder="Type contact name..."/>-->
+                <!--</div>-->
+                <!--<button type="submit" class="btn btn-primary">Search</button>-->
+                <!--</form>-->
+            </div>
+        </div>
+        <div class="row">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="contact,iterStat : ${contacts}">
+                    <td th:text="${iterStat.count}"></td>
+                    <td th:text="${contact.name}"></td>
+                    <td th:text="${contact.email}"></td>
+                    <td th:text="${contact.phone}"></td>
+                    <td class="align-content-center"><a class="btn btn-info"
+                                                        th:href="@{/contact/{id}/edit(id=${contact.id})}">Edit</a></td>
+                    <td class="align-content-center"><a href="#" class="btn btn-danger">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </th:block>
+</div>
+<!-- /.container -->
+
+
+<footer th:replace="layout::footer"></footer>
+</body>
+</html>

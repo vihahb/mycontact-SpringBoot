@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head">
+    <meta charset="UTF-8">
+    <title>Contact input</title>
+</head>
+<body>
+<nav th:replace="layout :: header"></nav>
+
+<div class="container main-content form">
+    <div id="row-1" class="row">
+
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title" style="margin-bottom: 10px;">Create contact</h5>
+                <form action="#" th:action="@{/contact/save}" th:object="${contact}"
+                      method="POST" novalidate="novalidate">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" th:field="*{name}" th:errorclass="error"/>
+                        <em th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></em>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" th:field="*{email}" th:errorclass="error"/>
+                        <em th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger"></em>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="text" class="form-control" th:field="*{phone}" th:errorclass="error"/>
+                        <em th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="alert alert-danger"></em>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div><!-- /.container -->
+
+<footer th:replace="layout::footer"></footer>
+</body>
+</html>
